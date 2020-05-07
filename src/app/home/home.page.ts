@@ -9,7 +9,7 @@ import * as ml5 from 'ml5';
 export class HomePage implements OnInit {
   curve: any;
   canvasSizeX = 200;
-  canvasSizeY = 200;
+  canvasSizeY = 500;
   constructor(private el: ElementRef) { }
   ngOnInit() {
     const p5obj = new p5(p => {
@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   setup(p) {
     const c = document.querySelector('#canvasContainer');
     p
-      .createCanvas(p.screenWidth, this.canvasSizeY)
+      .createCanvas(p.displayWidth, p.displayHeight-this.canvasSizeY)
       .parent(c);
   }
   draw(p) {
