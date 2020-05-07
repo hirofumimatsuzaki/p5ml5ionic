@@ -10,18 +10,30 @@ export class HomePage implements OnInit {
   curve: any;
   canvasSizeX = 200;
   canvasSizeY = 500;
+  fish: any;
+  mobileNet: any;
+  fish: any;
   constructor(private el: ElementRef) { }
   ngOnInit() {
     const p5obj = new p5(p => {
+      p.preload =() =>{this.preload(p);};
       p.setup = () => { this.setup(p); };
       p.draw = () => { this.draw(p); };
     }, this.el.nativeElement);
   }
+  preload(p){
+    this.mobileNet=ml5.imageClassifier('MobileNet');
+  }
+
+
   setup(p) {
     const c = document.querySelector('#canvasContainer');
     p
       .createCanvas(p.displayWidth, p.displayHeight-this.canvasSizeY)
       .parent(c);
+      console.log('ml5 version:', ml5.version);
+      console.log(this.mobileNet);
+
   }
   draw(p) {
     p.background(220);
