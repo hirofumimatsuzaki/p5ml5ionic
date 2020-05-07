@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   setup(p) {
     const c = document.querySelector('#canvasContainer');
     p
-      .createCanvas(this.canvasSizeX, this.canvasSizeY)
+      .createCanvas(p.screenWidth, this.canvasSizeY)
       .parent(c);
   }
   draw(p) {
