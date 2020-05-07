@@ -10,9 +10,8 @@ export class HomePage implements OnInit {
   curve: any;
   canvasSizeX = 200;
   canvasSizeY = 500;
-  fish: any;
   mobileNet: any;
-  fish: any;
+ classifier:any;
   constructor(private el: ElementRef) { }
   ngOnInit() {
     const p5obj = new p5(p => {
@@ -22,20 +21,28 @@ export class HomePage implements OnInit {
     }, this.el.nativeElement);
   }
   preload(p){
-    this.mobileNet=ml5.imageClassifier('MobileNet');
+    this.classifier = ml5.imageClassifier('MobileNet', this.modelLoaded);
   }
-
+  // When the model is loaded
+  modelLoaded() {
+    console.log('Model Loaded!');
+  }
 
   setup(p) {
     const c = document.querySelector('#canvasContainer');
     p
-      .createCanvas(p.displayWidth, p.displayHeight-this.canvasSizeY)
+      .createCanvas(p.displayWidth, this.canvasSizeY)
       .parent(c);
       console.log('ml5 version:', ml5.version);
-      console.log(this.mobileNet);
+      this.classifier.classify(document.getElementById('image'), (err, results) => {
+    console.log(results);
+     p.text("label: "+results[0].label,20,20);
+     p.text("confidence: "+results[0].confidence,20,40);
+  });
 
   }
   draw(p) {
-    p.background(220);
+  //  p.background(220);
+
   }
 }
