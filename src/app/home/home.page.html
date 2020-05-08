@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      p5js&ml5js
+      Image classification App
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,13 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">p5js&ml5js</ion-title>
+      <ion-title size="large">image classification App</ion-title>
     </ion-toolbar>
   </ion-header>
   <img src="assets/takabe.jpg" class="img-fluid" id="image">
   <div id="canvasContainer" class="canvas-container"></div>
+  <ion-button expand="full" (click)="exportImage()">
+    <ion-icon slot="start" name="import"></ion-icon>
+    import image
+    </ion-button>
 </ion-content>

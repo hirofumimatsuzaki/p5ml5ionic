@@ -9,7 +9,7 @@ import * as ml5 from 'ml5';
 export class HomePage implements OnInit {
   curve: any;
   canvasSizeX = 200;
-  canvasSizeY = 500;
+  canvasSizeY = 200;
   mobileNet: any;
  classifier:any;
   constructor(private el: ElementRef) { }
